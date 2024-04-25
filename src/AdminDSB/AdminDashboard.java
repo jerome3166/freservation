@@ -177,7 +177,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         } else {
             try {
                 TableModel tbl = data.getModel();
-                ResultSet rs = new DBConnector().getData("select * from jose where id = '" + tbl.getValueAt(rowIndex, 0) + "'");
+                ResultSet rs = new DBConnector().getData("select * from reserve where id = '" + tbl.getValueAt(rowIndex, 0) + "'");
                 if (rs.next()) {
                     editAccount ea = new editAccount();
                     ea.id.setText("" + rs.getString("id"));
@@ -218,7 +218,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void displayData() {
         try {
-            ResultSet rs = new DBConnector().getData("select * from jose where status in ('active', 'inactive') and id != '" + id.getText() + "'");
+            ResultSet rs = new DBConnector().getData("select * from reserve where status in ('active', 'inactive') and id != '" + id.getText() + "'");
             data.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException e) {
             System.err.println("An error occurred while fetching data: " + e.getMessage());

@@ -119,7 +119,7 @@ public class changePassword extends javax.swing.JFrame {
                 errorMessage("VALIDATION FAILED!");
             } else {
                 Container cons = Container.getInstance();
-                ResultSet rs = new DBConnector().getData("select * from jose where id = '" + cons.getId() + "'");
+                ResultSet rs = new DBConnector().getData("select * from reserve where id = '" + cons.getId() + "'");
 
                 if (rs.next()) {
                     String oldPass = rs.getString("password");
@@ -127,7 +127,7 @@ public class changePassword extends javax.swing.JFrame {
 
                     if (oldPass.equals(oldHash)) {
                         String newPass = passwordHashing.hashPassword(newPassword.getText());
-                        new DBConnector().updateData("update jose set password = '" + newPass + "' where id = '" + cons.getId() + "'");
+                        new DBConnector().updateData("update reserve set password = '" + newPass + "' where id = '" + cons.getId() + "'");
                         successMessage("ACCOUNT SUCCESSFULLY UPDATED!");
                         new LoginDashboard().setVisible(true);
                         dispose();

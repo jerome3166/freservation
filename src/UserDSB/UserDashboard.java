@@ -30,7 +30,7 @@ public class UserDashboard extends javax.swing.JFrame {
 
     private void displayData() {
         try {
-            ResultSet rs = new DBConnector().getData("SELECT * FROM accounts_table WHERE "
+            ResultSet rs = new DBConnector().getData("SELECT * FROM reserve WHERE  "
                     + "account_status IN ('ACTIVE', 'INACTIVE')");
 
             DefaultTableModel tblModel = (DefaultTableModel) userTB.getModel();
@@ -139,9 +139,7 @@ public class UserDashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        adminName = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         userTB = new javax.swing.JTable();
         id = new javax.swing.JTextField();
@@ -166,18 +164,9 @@ public class UserDashboard extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        adminName.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
-        adminName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user.png"))); // NOI18N
-        adminName.setText("USERS NAME");
-        jPanel1.add(adminName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
-
         jLabel4.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
         jLabel4.setText("USERS DASHBOARD");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, 20));
-
-        jLabel2.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
-        jLabel2.setText("HOSPITAL MANAGEMENT SYSTEMv.3");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, 20));
 
         userTB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -357,7 +346,6 @@ public class UserDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel adminName;
     private javax.swing.JTextField contact;
     private javax.swing.JTextField email;
     private javax.swing.JComboBox<String> gender;
@@ -368,7 +356,6 @@ public class UserDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

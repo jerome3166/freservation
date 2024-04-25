@@ -28,7 +28,7 @@ public class LoginDashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        email = new javax.swing.JTextField();
+        username = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         showPass = new javax.swing.JCheckBox();
         password = new javax.swing.JPasswordField();
@@ -43,21 +43,21 @@ public class LoginDashboard extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(635, 423));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        email.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
-        email.setForeground(new java.awt.Color(102, 102, 102));
-        email.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        email.setText("ID");
-        email.addFocusListener(new java.awt.event.FocusAdapter() {
+        username.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
+        username.setForeground(new java.awt.Color(102, 102, 102));
+        username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        username.setText("ID");
+        username.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                emailFocusGained(evt);
+                usernameFocusGained(evt);
             }
         });
-        email.addMouseListener(new java.awt.event.MouseAdapter() {
+        username.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                emailMouseClicked(evt);
+                usernameMouseClicked(evt);
             }
         });
-        jPanel1.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 265, 29));
+        jPanel1.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 265, 29));
 
         jButton2.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
         jButton2.setText("EXIT");
@@ -84,6 +84,11 @@ public class LoginDashboard extends javax.swing.JFrame {
         password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 passwordFocusGained(evt);
+            }
+        });
+        password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordActionPerformed(evt);
             }
         });
         jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 430, 265, 30));
@@ -141,17 +146,17 @@ public class LoginDashboard extends javax.swing.JFrame {
         password.setEchoChar(showPass.isSelected() ? (char) 0 : '*');
     }//GEN-LAST:event_showPassActionPerformed
 
-    private void emailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emailMouseClicked
-        email.setText("");
-    }//GEN-LAST:event_emailMouseClicked
+    private void usernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameMouseClicked
+        username.setText("");
+    }//GEN-LAST:event_usernameMouseClicked
 
-    private void emailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFocusGained
-    }//GEN-LAST:event_emailFocusGained
+    private void usernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameFocusGained
+    }//GEN-LAST:event_usernameFocusGained
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             String hashedPass = passwordHashing.hashPassword(password.getText());
-            if (loginDB(email.getText(), hashedPass)) {
+            if (loginDB(username.getText(), hashedPass)) {
                 if (xstatus.equalsIgnoreCase("pending")) {
                     errorMessage("WAIT FOR ADMIN APPROVAL!");
                 } else if (xstatus.equalsIgnoreCase("declined")) {
@@ -184,6 +189,10 @@ public class LoginDashboard extends javax.swing.JFrame {
         new RegisterDashboard().setVisible(true); dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -195,8 +204,8 @@ public class LoginDashboard extends javax.swing.JFrame {
 
     private static String xstatus, xtype;
 
-    private boolean loginDB(String email, String pass) throws SQLException {
-        ResultSet rs = new DBConnector().getData("select * from jose where email = '" + email + "' and password = '" + pass + "'");
+    private boolean loginDB(String username, String pass) throws SQLException {
+        ResultSet rs = new DBConnector().getData("select * from reserve where username = '" + username + "' and password = '" + pass + "'");
         if (rs.next()) {
             xstatus = rs.getString("status");
             xtype = rs.getString("type");
@@ -224,7 +233,6 @@ public class LoginDashboard extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField email;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -232,5 +240,6 @@ public class LoginDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField password;
     private javax.swing.JCheckBox showPass;
+    public javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

@@ -28,8 +28,8 @@ public class editAccount extends javax.swing.JFrame {
         email = new javax.swing.JTextField();
         username = new javax.swing.JTextField();
         contact = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
         id = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -115,11 +115,6 @@ public class editAccount extends javax.swing.JFrame {
         });
         jPanel3.add(contact, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 240, 30));
 
-        jLabel17.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/sss.png"))); // NOI18N
-        jLabel17.setText("UPDATE ACCOUNT");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 200, 40));
-
         id.setFont(new java.awt.Font("Yu Gothic", 0, 11)); // NOI18N
         id.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         id.setText("ID");
@@ -129,6 +124,11 @@ public class editAccount extends javax.swing.JFrame {
             }
         });
         jPanel3.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 90, 30));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("BUANG KA SIR");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 150, 50));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 490));
 
@@ -159,7 +159,7 @@ public class editAccount extends javax.swing.JFrame {
             if (updateChecker()) {
             } else if (!validationChecker()) {
             } else {
-                new DBConnector().updateData("update zxcvb set email = '" + email.getText() + "',user = '" + username.getText() + "', "
+                new DBConnector().updateData("update reserve set email = '" + email.getText() + "',username = '" + username.getText() + "', "
                         + "contact = '" + contact.getText() + "', type = '" + type.getSelectedItem() + "', "
                         + "status = '" + status.getSelectedItem() + "' where id = '" + id.getText() + "'");
 
@@ -195,13 +195,13 @@ public class editAccount extends javax.swing.JFrame {
     }
 
     private boolean updateChecker() throws SQLException {
-        ResultSet rs = new DBConnector().getData("select * from zxcvb where (user = '" + username.getText() + "' or email = '" + email.getText() + "') and id != '" + id.getText() + "'");
+        ResultSet rs = new DBConnector().getData("select * from reserve where (username = '" + username.getText() + "' or email = '" + email.getText() + "') and id != '" + id.getText() + "'");
         if (rs.next()) {
             String xemail = rs.getString("email");
             if (xemail.equalsIgnoreCase(email.getText())) {
                 errorMessage("EMAIL HAS BEEN USED!");
             }
-            String xusername = rs.getString("user");
+            String xusername = rs.getString("username");
             if (xusername.equalsIgnoreCase(username.getText())) {
                 errorMessage("USERNAME HAS BEEN USED!");
             }
@@ -238,8 +238,8 @@ public class editAccount extends javax.swing.JFrame {
     public javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
