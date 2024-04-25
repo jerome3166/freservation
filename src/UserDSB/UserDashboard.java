@@ -23,7 +23,6 @@ public class UserDashboard extends javax.swing.JFrame {
 
     public UserDashboard(String usersName) {
         initComponents();
-        adminName.setText(usersName);
         displayData();
         retrieveData();
     }
@@ -196,7 +195,7 @@ public class UserDashboard extends javax.swing.JFrame {
             userTB.getColumnModel().getColumn(7).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 670, 480));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 670, 480));
 
         id.setEditable(false);
         id.setHorizontalAlignment(javax.swing.JTextField.CENTER);
